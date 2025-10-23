@@ -1,99 +1,158 @@
-# -Procesamiento-de-Notas-y-Texto-en-GO
-Descripción General
-Este programa en Go realiza dos ejercicios principales:
+# Sistema de Análisis de Notas y Texto
 
-Procesamiento de calificaciones estudiantiles
+Un programa en Go que procesa notas de estudiantes y analiza texto de entrada, demostrando el procesamiento básico de datos y manipulación de cadenas en Go.
 
-Análisis de texto ingresado por el usuario
+## Descripción
 
-Ejercicio 1: Procesamiento de Calificaciones
-Estructura de Datos
-go
-bidi := [6][4]float64{
-    {9.5, 8.9, 8.6, 9.0},
-    {7.5, 6.8, 8.0, 9.2},
-    {9.3, 9.7, 8.5, 8.4},
-    {6.5, 7.8, 8.9, 9.1},
-    {8.0, 8.3, 7.5, 6.9},
-    {9.9, 10.0, 8.7, 9.8},
+Este programa consta de dos ejercicios principales:
+1. **Análisis de Notas de Estudiantes**: Procesa un array bidimensional de notas para calcular notas más altas/más bajas, promedios individuales y promedio general del curso.
+2. **Análisis de Texto**: Toma texto ingresado por el usuario y realiza análisis de frecuencia de palabras y listado alfabético.
+
+## Características
+
+### Ejercicio 1: Procesamiento de Notas
+- Calcula la nota más alta y más baja para cada estudiante
+- Computa promedios individuales de estudiantes
+- Calcula el promedio general del curso
+- Procesa una matriz de 6x4 de notas
+
+### Ejercicio 2: Análisis de Texto
+- Lee texto ingresado por el usuario
+- Separa el texto en palabras
+- Cuenta la frecuencia de palabras
+- Muestra palabras en orden alfabético
+
+## Estructura del Código
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func main() {
+    // Ejercicio 1: Procesamiento de notas
+    // Ejercicio 2: Análisis de texto
 }
-Funcionalidades Implementadas
-1. Cálculo de Notas Extremas
-Nota más alta: Para cada estudiante, encuentra la calificación máxima
+```
 
-Nota más baja: Para cada estudiante, encuentra la calificación mínima
+## Instalación
 
-2. Cálculo de Promedios
-Promedio individual: Calcula el promedio de cada estudiante (suma de 4 notas / 4)
+1. Asegúrate de tener Go instalado en tu sistema (versión 1.16+ recomendada)
+2. Clona o descarga el repositorio
+3. Navega al directorio del proyecto
 
-Promedio general: Calcula el promedio de todos los estudiantes
+## Uso
 
-Salida Esperada
-text
+### Ejecutar el Programa
+
+```bash
+go run main.go
+```
+
+### Ejemplo de Ejecución
+
+**Salida del Ejercicio 1:**
+```
 ******Ejercicio 1******
 ******Nota mas alta y baja del estudiante******
 La nota mas alta del estudiante 1 es: 9.5
 La nota mas baja del estudiante 1 es: 8.6
+La nota mas alta del estudiante 2 es: 9.2
+La nota mas baja del estudiante 2 es: 6.8
 ...
 ******Promedio por estudiante******
 La nota promediada del estudiante 1 es de: 9.0
+La nota promediada del estudiante 2 es de: 7.875
 ...
 ******Promedio general******
-Promedio general del curso es de: [valor calculado]
-Ejercicio 2: Análisis de Texto
-Proceso de Procesamiento
-Entrada de texto: Usa bufio.NewScanner para leer entrada del usuario
+Promedio general del curso es de: 8.541666666666666
+```
 
-Separación de palabras:
+**Salida del Ejercicio 2:**
+```
+******Ejercicio 2******
+Ingrese el texto: hola mundo hola otra vez mundo
+Lista de palabras ordenadas
+hola
+mundo
+hola
+otra
+vez
+mundo
+La palabra "hola" se repite: 2
+La palabra "mundo" se repite: 2
+La palabra "otra" se repite: 1
+La palabra "vez" se repite: 1
+```
 
-Primero divide por "/n" (posible error, debería ser "\n")
+## Formato de Entrada
 
-Luego usa strings.Fields para separar por espacios
+### Datos de Notas
+El programa usa una matriz 6x4 precargada que representa:
+- 6 estudiantes
+- 4 notas por estudiante
 
-Conteo de palabras: Utiliza un mapa para contar repeticiones
+### Entrada de Texto
+Cuando se solicite, ingresa cualquier texto. El programa:
+- Separará el texto en palabras (usando espacios como separadores)
+- Contará la frecuencia de palabras
+- Mostrará palabras en el orden en que aparecen
 
-Salida ordenada: Muestra palabras en orden de aparición
+## Funcionalidades
 
-Características
-Almacenamiento: Slice txtsep para palabras individuales
+### Procesamiento de Notas
+- **Iteración de Matriz**: Procesa las notas de cada estudiante
+- **Cálculo Min/Max**: Encuentra notas más altas y más bajas por estudiante
+- **Cálculo de Promedio**: Computa promedios individuales y general
 
-Conteo: Mapa contador para frecuencia de palabras
+### Análisis de Texto
+- **Lectura de Entrada**: Usa `bufio.Scanner` para entrada del usuario
+- **División de Cadenas**: Separa texto en palabras
+- **Conteo de Frecuencia**: Usa mapas de Go para contar ocurrencias de palabras
+- **Visualización de Salida**: Muestra tanto lista ordenada como conteos de frecuencia
 
-Orden: Mantiene el orden original de las palabras
+## Estructuras de Datos
 
-Posibles Mejoras
-Corrección del separador de líneas (de "/n" a "\n")
+- **Array Bidimensional**: `[6][4]float64` para almacenar notas
+- **Slices**: `[]float64` para almacenar sumas y promedios
+- **Mapa**: `map[string]int` para conteo de frecuencia de palabras
 
-Ordenamiento alfabético real de las palabras
+## Dependencias
 
-Manejo de mayúsculas/minúsculas para conteo
+- Solo librerías estándar de Go:
+  - `bufio`
+  - `fmt`
+  - `os`
+  - `strings`
 
-Eliminación de caracteres especiales
+## Personalización
 
-Estructura del Código
-Variables Principales
-bidi: Matriz 6x4 de calificaciones
+Para modificar los datos de notas, edita el array `bidi` en la función principal:
 
-sumanot: Slice con sumas individuales
+```go
+bidi := [6][4]float64{
+    {9.5, 8.9, 8.6, 9.0},
+    {7.5, 6.8, 8.0, 9.2},
+    // ... agregar más datos de estudiantes
+}
+```
 
-promedio: Slice con promedios individuales
+## Limitaciones
 
-contador: Mapa para frecuencia de palabras
+- Los datos de notas están precargados (no se cargan desde archivos externos)
+- La separación de texto usa separación simple por espacios
+- La ordenación de palabras mantiene el orden de entrada en lugar de una ordenación alfabética verdadera
 
-Flujo de Ejecución
-Procesamiento completo de calificaciones
+## Valor Educativo
 
-Solicitud y procesamiento de texto
-
-Análisis y presentación de resultados
-
-Consideraciones Técnicas
-Usa arrays estáticos para calificaciones
-
-Emplea slices dinámicos para resultados
-
-Utiliza maps para conteo eficiente
-
-Maneja entrada estándar con bufio
-
-El código demuestra conceptos fundamentales de Go como arrays, slices, maps, y procesamiento de strings.
+Este programa demuestra:
+- Manipulación de arrays bidimensionales en Go
+- Cálculos estadísticos básicos
+- Procesamiento de cadenas y uso de mapas
+- Manejo de entrada del usuario
+- Operaciones con slices y arrays dinámicos
